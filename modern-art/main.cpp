@@ -48,15 +48,10 @@ int main() {
             }
 
             if ((row + col) % 2) {
-                // cout << "G";
                 goldCells++;
             }
-            // } else {
-                // cout << "B";
-            // }
         }
 
-        // cout << "\n";
     }
 
     cout << goldCells << endl;
