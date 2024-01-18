@@ -17,16 +17,22 @@ int main() {
         cin >> pages[i];
     }
 
-    vector<int> dp = vector<int>(x + 1, 0);
-    dp[0] = 0;
+    int dp[x + 1];
+    for(int i = 0; i <= x; i++) {
+        dp[i] = 0;
+    }
 
-    for(int i = 0; i < x; i++) {
-        for(int j = 0; j < n; j++) {
-            if(i + prices[j] <= x) {
-                dp[i + prices[j]] = max(dp[i + prices[j]], dp[i] + pages[j]);
-            }
+    int max_pages = 0;
+
+    for(int i = 0; i < n; i++) {
+        for(int m = 0; m <= x; m++) {
+            if(m - prices[i] < 0) continue;
+            dp[m - prices[i]] = max(dp[m - prices[i]], dp[m] + pages[i]);
+            max_pages = max(dp[m - prices[i]], max_pages);
         }
     }
 
-    cout << dp[x - 1] << endl;
+    cout << max_pages << endl;
+
+    return 0;
 }
